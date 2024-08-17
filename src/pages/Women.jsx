@@ -18,7 +18,11 @@ function Women() {
       <h2 className="py-9 text-center text-2xl uppercase text-gray-950">
         men collection
       </h2>
-      <Product products={productVariants} title={title.toLowerCase()} />
+      <Product
+        products={productVariants}
+        title={title.toLowerCase()}
+        type="women"
+      />
     </div>
   );
 }

@@ -8,7 +8,7 @@ const initialState = {
 };
 
 const cartSlice = createSlice({
-  name: "menProduct",
+  name: "cartProduct",
   initialState,
   reducers: {
     addToCart(state, action) {
@@ -40,9 +40,54 @@ const cartSlice = createSlice({
       }
       localStorage.setItem("cartItems", JSON.stringify(state.cart));
     },
+
+    deleteCartItem(state, action) {
+      const newListItem = state.cart.filter(
+        (item) => item.id !== action.payload,
+      );
+
+      state.cart = [...newListItem];
+
+      localStorage.setItem("cartItems", JSON.stringify(state.cart));
+    },
+
+    increQuantity(state, action) {
+      const newListItem = state.cart.map((item) => {
+        if (item.id === action.payload) {
+          return {
+            ...item,
+            quantity: Number(item.quantity) + 1,
+          };
+        } else {
+          return item;
+        }
+      });
+
+      state.cart = [...newListItem];
+
+      localStorage.setItem("cartItems", JSON.stringify(state.cart));
+    },
+
+    decreQuantity(state, action) {
+      const newListItem = state.cart.map((item) => {
+        if (item.id === action.payload && item.quantity > 1) {
+          return {
+            ...item,
+            quantity: Number(item.quantity) - 1,
+          };
+        } else {
+          return item;
+        }
+      });
+
+      state.cart = [...newListItem];
+
+      localStorage.setItem("cartItems", JSON.stringify(state.cart));
+    },
   },
 });
 
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, deleteCartItem, increQuantity, decreQuantity } =
+  cartSlice.actions;
 
 export default cartSlice.reducer;

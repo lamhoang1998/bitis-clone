@@ -1,6 +1,16 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import {
+  decreQuantity,
+  deleteCartItem,
+  increQuantity,
+} from "../reducers/cartSlice";
+import { useNavigate } from "react-router-dom";
 
 function CartItem({ cart }) {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   return (
     <div className="-mx-8 flex items-center px-6 py-5 hover:bg-gray-100 dark:hover:bg-gray-800">
       <div className="flex w-2/5">
@@ -9,6 +19,9 @@ function CartItem({ cart }) {
             className="h-full w-full object-cover"
             src={cart.image.src}
             alt=""
+            onClick={() =>
+              navigate(`/details/${cart.itemId}?type=${cart.type}`)
+            }
           />
         </div>
         <div className="ml-4 flex w-[60%] flex-grow flex-col justify-between">
@@ -21,8 +34,12 @@ function CartItem({ cart }) {
           <a
             href="#"
             className="text-xs font-semibold text-gray-500 hover:text-red-500 dark:text-rose-600"
+            onClick={() => {
+              console.log(cart.id);
+              dispatch(deleteCartItem(cart.id));
+            }}
           >
-            Remove
+            Delete
           </a>
         </div>
       </div>
@@ -34,6 +51,7 @@ function CartItem({ cart }) {
         <svg
           className="w-3 fill-current text-gray-600 dark:text-white"
           viewBox="0 0 448 512"
+          onClick={() => dispatch(decreQuantity(cart.id))}
         >
           <path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
         </svg>
@@ -45,6 +63,7 @@ function CartItem({ cart }) {
         <svg
           className="w-3 fill-current text-gray-600 dark:text-white"
           viewBox="0 0 448 512"
+          onClick={() => dispatch(increQuantity(cart.id))}
         >
           <path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
         </svg>

@@ -19,6 +19,7 @@ function App() {
         { path: "men", element: <Men />, loader: menLoader },
         { path: "women", element: <Women />, loader: womenLoader },
         { path: "girls", element: <Girls />, loader: girlLoader },
+        { path: "details", element: <Details /> },
         { path: "details/:id", element: <Details /> },
         { path: "wishlist", element: <WishList /> },
         { path: "cart", element: <Cart /> },

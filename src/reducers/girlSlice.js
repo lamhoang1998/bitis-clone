@@ -5,7 +5,7 @@ const initialState = {
 };
 
 const girlSlice = createSlice({
-  name: "menProduct",
+  name: "girlProduct",
   initialState,
   reducers: {
     addGirlProduct(state, action) {

@@ -14,6 +14,8 @@ function Details() {
 
   const store = useSelector((store) => store);
 
+  console.log(store);
+
   const dispatch = useDispatch();
 
   let detail = {};
@@ -48,12 +50,14 @@ function Details() {
   function handleAddtoCart() {
     console.log(detail);
     const newCartProduct = {
-      id: detail.id,
+      id: store.cart.cart.length + 1,
+      itemId: id,
       title: detail.product.title,
       image: detail.image,
       size: size,
       price: detail.price.amount,
       quantity: numProduct,
+      type: type,
     };
 
     dispatch(addToCart(newCartProduct));

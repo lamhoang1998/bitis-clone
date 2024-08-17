@@ -6,6 +6,11 @@ function Cart() {
   const cartState = useSelector((store) => store.cart);
   console.log(cartState.cart);
 
+  const itemNum = cartState.cart.reduce(
+    (acc, cur) => acc + Number(cur.quantity),
+    0,
+  );
+
   return (
     <div className="container mx-auto mt-10 dark:bg-gray-900">
       <div className="my-10 flex shadow-md">
@@ -14,7 +19,9 @@ function Cart() {
             <h1 className="text-2xl font-semibold dark:text-white">
               Shopping Cart
             </h1>
-            <h2 className="text-2xl font-semibold dark:text-white">3 Items</h2>
+            <h2 className="text-2xl font-semibold dark:text-white">
+              {itemNum} Items
+            </h2>
           </div>
           <div className="mb-5 mt-10 flex px-3 py-3">
             <h3 className="w-2/5 text-xs font-semibold uppercase text-gray-600 dark:text-white">
@@ -32,10 +39,8 @@ function Cart() {
           </div>
 
           {cartState.cart?.map((cart) => {
-            return <CartItem key={cart._id} cart={cart} />;
+            return <CartItem key={cart.id} cart={cart} />;
           })}
-
-          <button className="mx-2 my-2 rounded-full bg-rose-600 px-2 py-2 text-white shadow-sm hover:bg-red-800"></button>
         </div>
       </div>
     </div>
