@@ -1,9 +1,11 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaRegHeart } from "react-icons/fa";
 import { CgShoppingCart } from "react-icons/cg";
 
 function Product({ products, title }) {
+  const [wishListProducts, setwishListProducts] = useState([]);
+
   return (
     <div className="mx-auto my-0 max-w-[1200px] px-[15px] py-0">
       <div className="grid grid-cols-6 gap-4">
@@ -23,7 +25,7 @@ function Product({ products, title }) {
                   <FaRegHeart />
                 </Link>
                 <Link
-                  to="/cart"
+                  to={`/details/${item?.id}?type=${title}`}
                   className="invisible absolute bottom-2 left-[95px] group-hover:visible"
                 >
                   <CgShoppingCart />

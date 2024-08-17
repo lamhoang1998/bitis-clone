@@ -1,0 +1,61 @@
+import React from "react";
+
+function CartItem({ cart }) {
+  return (
+    <div className="-mx-8 flex items-center px-6 py-5 hover:bg-gray-100 dark:hover:bg-gray-800">
+      <div className="flex w-2/5">
+        <div className="h-20 w-20">
+          <img
+            className="h-full w-full object-cover"
+            src={cart.image.src}
+            alt=""
+          />
+        </div>
+        <div className="ml-4 flex w-[60%] flex-grow flex-col justify-between">
+          <span className="text-sm font-bold dark:text-white">
+            {cart.title}
+          </span>
+          <span className="text-xs text-red-500 dark:text-green-400">
+            Size: {cart.size}
+          </span>
+          <a
+            href="#"
+            className="text-xs font-semibold text-gray-500 hover:text-red-500 dark:text-rose-600"
+          >
+            Remove
+          </a>
+        </div>
+      </div>
+      <span className="w-1/5 text-center text-sm font-semibold text-red-600">
+        ${cart.price}
+      </span>
+
+      <div className="flex w-1/5 justify-center">
+        <svg
+          className="w-3 fill-current text-gray-600 dark:text-white"
+          viewBox="0 0 448 512"
+        >
+          <path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
+        </svg>
+
+        <span className="w-1/5 text-center text-sm font-semibold dark:text-white">
+          {cart.quantity}
+        </span>
+
+        <svg
+          className="w-3 fill-current text-gray-600 dark:text-white"
+          viewBox="0 0 448 512"
+        >
+          <path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
+        </svg>
+      </div>
+      <span className="w-1/5 text-center text-sm font-semibold text-red-600">
+        ${+cart.price * +cart.quantity}
+      </span>
+
+      {/* <span className="text-center w-1/5 font-semibold text-sm dark:text-white sm:hidden">$400.00</span> */}
+    </div>
+  );
+}
+
+export default CartItem;

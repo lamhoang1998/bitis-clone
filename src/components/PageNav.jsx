@@ -22,12 +22,12 @@ function PageNav() {
         </ul>
         <ul className="flex gap-4">
           <li>
-            <Link>
+            <Link to="/wishlist">
               <FaRegHeart />
             </Link>
           </li>
           <li>
-            <Link>
+            <Link to="cart">
               <CgShoppingCart />
             </Link>
           </li>
